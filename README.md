@@ -10,15 +10,30 @@ If you need to repeat the performance values ​​of the experimental results, 
 
 If you need to perform the entire experiment, that is, the entire process from training to testing, we recommend that you directly execute all the commands of setcode, but before that you also need to perform the first two steps above.
 
+## Preliminary Study
+### Probe Datasets and Tasks
+We employ the same experimental procedure as Karmakar et al. \cite{DBLP:conf/kbse/KarmakarR21}, using 1000 Java samples with a uniform class distribution, i.e., split ratio of 6:2:2, from the JEMMA dataset on the three tasks, i.e., Identifier Tagging (IDN), AST Node Tagging (AST), Cyclomatic Complexity (CPX) for probing code attribute information of code PTMs layer by layer. 
+### Probe Code and Execute
+
+
+### Sliding Window Strategy
+We use a sliding window strategy to calculate the sum of the accuracy of consecutive layers of length 2, and return the result with the highest score, which means each module consists of two consecutive layers with the highest accuracy. Then, each code PTM is divided into three modules: the two consecutive layers with the richest lexical information constitute the lexical module, the two consecutive layers with the richest syntactic information constitute the syntactic module, and the two consecutive layers with the richest structural information constitute the structural module and semantic knowledge is implicitly preserved within all selected modules.
+
+
+
+## GA Search 
+
 
 
 ## Details
 ### Dataset Partition
 code clone detection: Train-901028, Valid-415416, Test-415416
 
-code smell detection: Train-1089, Valid-350, Test-350
+technical debt detection: Train-23012, Valid-7674, Test-7674
 
-technical debt detection: Train-24034, Valid-7674, Test-6652
+
+
+
 ### Finetune 
 
 For code clone detection, use 10% Train and 10% Valid for fine-tuning, for code smell detection and technical debt detection, use full Train and Valid for fine-tuning.
