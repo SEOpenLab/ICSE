@@ -16,18 +16,18 @@ We employ the same experimental procedure as Karmakar et al. \cite{DBLP:conf/kbs
 ### Probe Code and Execute
 First we will create and activate a virtual environment with anaconda, the Probe_GA.tar.gz is our environment, you could put it in your own computer. 
 
-$ conda activate Probe_GA
+$conda activate Probe_GA
 
 Then we begin probing the code pre-trained models layer by layer using probe datasets and tasks, and we will get the scores of each layer for three code attribute of code PTMs.
 
-$ python probe_extractor.py & python probe_classifier-accuracy.py > results/results.txt
+$python probe_extractor.py & python probe_classifier-accuracy.py > results/results.txt
 
 ### Sliding Window Strategy
 We use a sliding window strategy to calculate the sum of the accuracy of consecutive layers of length 2, and return the result with the highest score, which means each module consists of two consecutive layers with the highest accuracy. Then, each code PTM is divided into three modules: the two consecutive layers with the richest lexical information constitute the lexical module, the two consecutive layers with the richest syntactic information constitute the syntactic module, and the two consecutive layers with the richest structural information constitute the structural module and semantic knowledge is implicitly preserved within all selected modules.
 
 We input the results obtained above into the INPUT PROBE RESULTS section of the modular.py file, and executing the file will produce the Top-3 candidate modules selected according to a two-layer sliding strategy.
 
-$ python modular.py
+$python modular.py
 
 Then we get 18 code functional modules, each code PTM have three code modules.
 
