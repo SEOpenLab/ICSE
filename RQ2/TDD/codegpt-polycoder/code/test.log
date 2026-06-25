@@ -1,0 +1,81 @@
+04/21/2026 23:55:38 - WARNING - __main__ -   Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Some weights of the model checkpoint at ./CodeGPT-small-java were not used when initializing GPT2Model: ['lm_head.weight']
+- This IS expected if you are initializing GPT2Model from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing GPT2Model from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of the model checkpoint at ./PolyCoder-160M were not used when initializing GPTNeoXModel: ['embed_out.weight']
+- This IS expected if you are initializing GPTNeoXModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing GPTNeoXModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+04/21/2026 23:55:41 - INFO - __main__ -   Training/evaluation parameters Namespace(train_data_file='../dataset/train.jsonl', output_dir='./saved_models', eval_data_file='../dataset/valid.jsonl', test_data_file='../dataset/test.jsonl', model_type='roberta', model_name_or_path='./codebert-base', mlm=False, mlm_probability=0.15, config_name='', tokenizer_name='./codebert-base', cache_dir='', block_size=50, do_train=False, do_eval=True, do_test=True, evaluate_during_training=True, do_lower_case=False, train_batch_size=16, eval_batch_size=64, gradient_accumulation_steps=1, learning_rate=5e-05, weight_decay=0.0, adam_epsilon=1e-08, max_grad_norm=1.0, num_train_epochs=1.0, max_steps=-1, warmup_steps=0, logging_steps=50, save_steps=50, save_total_limit=None, eval_all_checkpoints=False, no_cuda=False, overwrite_output_dir=False, overwrite_cache=False, seed=123456, epoch=100, fp16=False, fp16_opt_level='O1', local_rank=-1, server_ip='', server_port='', early_stopping_patience=10, min_loss_delta=0.001, dropout_probability=0, n_gpu=1, device=device(type='cuda'), per_gpu_train_batch_size=16, per_gpu_eval_batch_size=64, start_epoch=0, start_step=0)
+04/21/2026 23:55:44 - INFO - __main__ -   ***** Running evaluation *****
+04/21/2026 23:55:44 - INFO - __main__ -     Num examples = 7674
+04/21/2026 23:55:44 - INFO - __main__ -     Batch size = 64
+GPT2Model(
+  (wte): Embedding(52000, 768)
+  (wpe): Embedding(1024, 768)
+  (drop): Dropout(p=0.1, inplace=False)
+  (h): ModuleList(
+    (0-3): 4 x GPT2Block(
+      (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (attn): GPT2Attention(
+        (c_attn): Conv1D()
+        (c_proj): Conv1D()
+        (attn_dropout): Dropout(p=0.1, inplace=False)
+        (resid_dropout): Dropout(p=0.1, inplace=False)
+      )
+      (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (mlp): GPT2MLP(
+        (c_fc): Conv1D()
+        (c_proj): Conv1D()
+        (act): NewGELUActivation()
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+  )
+  (ln_f): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+)
+GPTNeoXModel(
+  (embed_in): Embedding(50304, 768)
+  (layers): ModuleList(
+    (0-1): 2 x GPTNeoXLayer(
+      (input_layernorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (post_attention_layernorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (attention): GPTNeoXAttention(
+        (rotary_emb): RotaryEmbedding()
+        (query_key_value): Linear(in_features=768, out_features=2304, bias=True)
+        (dense): Linear(in_features=768, out_features=768, bias=True)
+      )
+      (mlp): GPTNeoXMLP(
+        (dense_h_to_4h): Linear(in_features=768, out_features=3072, bias=True)
+        (dense_4h_to_h): Linear(in_features=3072, out_features=768, bias=True)
+        (act): GELUActivation()
+      )
+    )
+  )
+  (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+04/21/2026 23:55:48 - INFO - __main__ -   ***** Eval results *****
+04/21/2026 23:55:48 - INFO - __main__ -     eval_acc = 0.9732
+04/21/2026 23:55:48 - INFO - __main__ -     eval_auc = 0.9047
+04/21/2026 23:55:48 - INFO - __main__ -     eval_f1 = 0.8347
+04/21/2026 23:55:48 - INFO - __main__ -     eval_loss = 0.133
+04/21/2026 23:55:49 - INFO - __main__ -   ***** Running Test *****
+04/21/2026 23:55:49 - INFO - __main__ -     Num examples = 6652
+04/21/2026 23:55:49 - INFO - __main__ -     Batch size = 64
+  0%|          | 0/104 [00:00<?, ?it/s]  8%|▊         | 8/104 [00:00<00:01, 70.76it/s] 15%|█▌        | 16/104 [00:00<00:01, 71.54it/s] 23%|██▎       | 24/104 [00:00<00:01, 71.76it/s] 31%|███       | 32/104 [00:00<00:01, 71.90it/s] 38%|███▊      | 40/104 [00:00<00:00, 71.90it/s] 46%|████▌     | 48/104 [00:00<00:00, 71.93it/s] 54%|█████▍    | 56/104 [00:00<00:00, 72.18it/s] 62%|██████▏   | 64/104 [00:00<00:00, 72.40it/s] 69%|██████▉   | 72/104 [00:00<00:00, 72.26it/s] 77%|███████▋  | 80/104 [00:01<00:00, 72.25it/s] 85%|████████▍ | 88/104 [00:01<00:00, 71.97it/s] 92%|█████████▏| 96/104 [00:01<00:00, 72.02it/s]100%|██████████| 104/104 [00:01<00:00, 72.18it/s]100%|██████████| 104/104 [00:01<00:00, 72.04it/s]

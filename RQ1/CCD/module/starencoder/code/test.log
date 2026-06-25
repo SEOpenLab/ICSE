@@ -1,0 +1,70 @@
+04/03/2026 22:48:29 - WARNING - __main__ -   Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+Some weights of the model checkpoint at ./starencoder were not used when initializing BertModel: ['cls.seq_relationship.bias', 'cls.seq_relationship.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.decoder.bias', 'cls.predictions.decoder.weight', 'cls.predictions.transform.dense.weight', 'cls.predictions.bias']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+04/03/2026 22:48:33 - INFO - __main__ -   Training/evaluation parameters Namespace(train_data_file='../dataset/train.txt', output_dir='./saved_models', eval_data_file='../dataset/valid.txt', test_data_file='../dataset/test.txt', model_type='auto', model_name_or_path='./starencoder', mlm=False, mlm_probability=0.15, config_name='./starencoder', tokenizer_name='./starencoder', cache_dir='', block_size=400, do_train=False, do_eval=True, do_test=True, evaluate_during_training=True, do_lower_case=False, train_batch_size=16, eval_batch_size=32, gradient_accumulation_steps=1, learning_rate=5e-05, weight_decay=0.0, adam_epsilon=1e-08, max_grad_norm=1.0, num_train_epochs=1.0, max_steps=-1, warmup_steps=0, logging_steps=50, save_steps=50, save_total_limit=None, eval_all_checkpoints=False, no_cuda=False, overwrite_output_dir=False, overwrite_cache=False, seed=123456, epoch=100, fp16=False, fp16_opt_level='O1', local_rank=-1, server_ip='', server_port='', n_gpu=1, device=device(type='cuda'), per_gpu_train_batch_size=16, per_gpu_eval_batch_size=32, start_epoch=0, start_step=0)
+04/03/2026 22:48:38 - INFO - __main__ -   Creating features from index file at ../dataset/valid.txt 
+<class 'transformers.models.auto.configuration_auto.AutoConfig'> <class 'transformers.models.auto.modeling_auto.AutoModel'> <class 'transformers.models.auto.tokenization_auto.AutoTokenizer'>
+<cls> 49154
+<sep> 49153
+<pad> 49152
+<class 'transformers.models.auto.configuration_auto.AutoConfig'> <class 'transformers.models.auto.modeling_auto.AutoModel'> <class 'transformers.models.auto.tokenization_auto.AutoTokenizer'>
+BertModel(
+  (embeddings): BertEmbeddings(
+    (word_embeddings): Embedding(49156, 768, padding_idx=49152)
+    (position_embeddings): Embedding(1024, 768)
+    (token_type_embeddings): Embedding(2, 768)
+    (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): BertEncoder(
+    (layer): ModuleList(
+      (0-5): 6 x BertLayer(
+        (attention): BertAttention(
+          (self): BertSelfAttention(
+            (query): Linear(in_features=768, out_features=768, bias=True)
+            (key): Linear(in_features=768, out_features=768, bias=True)
+            (value): Linear(in_features=768, out_features=768, bias=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (output): BertSelfOutput(
+            (dense): Linear(in_features=768, out_features=768, bias=True)
+            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (intermediate): BertIntermediate(
+          (dense): Linear(in_features=768, out_features=3072, bias=True)
+          (intermediate_act_fn): GELUActivation()
+        )
+        (output): BertOutput(
+          (dense): Linear(in_features=3072, out_features=768, bias=True)
+          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+  )
+  (pooler): BertPooler(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (activation): Tanh()
+  )
+)
+  0%|          | 0/41541 [00:00<?, ?it/s]  2%|▏         | 650/41541 [00:00<00:09, 4372.64it/s]  3%|▎         | 1300/41541 [00:00<00:07, 5388.11it/s]  6%|▋         | 2600/41541 [00:00<00:07, 5542.48it/s]  8%|▊         | 3250/41541 [00:00<00:07, 5092.01it/s]  9%|▉         | 3900/41541 [00:00<00:07, 5039.06it/s] 11%|█         | 4550/41541 [00:00<00:07, 4986.76it/s] 13%|█▎        | 5200/41541 [00:01<00:08, 4372.86it/s] 14%|█▍        | 5850/41541 [00:01<00:07, 4491.88it/s] 16%|█▌        | 6500/41541 [00:01<00:09, 3683.85it/s] 17%|█▋        | 7150/41541 [00:01<00:08, 4137.17it/s] 19%|█▉        | 7800/41541 [00:01<00:07, 4433.89it/s] 20%|██        | 8450/41541 [00:01<00:07, 4483.37it/s] 22%|██▏       | 9100/41541 [00:02<00:07, 4378.53it/s] 23%|██▎       | 9750/41541 [00:02<00:08, 3685.97it/s] 25%|██▌       | 10400/41541 [00:02<00:08, 3605.73it/s] 27%|██▋       | 11050/41541 [00:03<00:15, 2002.82it/s] 28%|██▊       | 11700/41541 [00:03<00:14, 2074.50it/s] 30%|██▉       | 12350/41541 [00:03<00:12, 2294.07it/s] 31%|███▏      | 13000/41541 [00:03<00:11, 2467.22it/s] 33%|███▎      | 13650/41541 [00:04<00:12, 2298.38it/s] 34%|███▍      | 14300/41541 [00:04<00:11, 2447.98it/s] 36%|███▌      | 14950/41541 [00:04<00:10, 2601.78it/s] 38%|███▊      | 15600/41541 [00:04<00:11, 2345.98it/s] 39%|███▉      | 16250/41541 [00:05<00:09, 2574.13it/s] 41%|████      | 16900/41541 [00:05<00:08, 2839.70it/s] 42%|████▏     | 17550/41541 [00:05<00:09, 2420.75it/s] 44%|████▍     | 18200/41541 [00:05<00:09, 2502.71it/s] 45%|████▌     | 18850/41541 [00:06<00:08, 2674.17it/s] 47%|████▋     | 19500/41541 [00:06<00:08, 2453.65it/s] 49%|████▊     | 20150/41541 [00:06<00:07, 2683.27it/s] 50%|█████     | 20800/41541 [00:06<00:07, 2749.13it/s] 52%|█████▏    | 21450/41541 [00:07<00:08, 2417.28it/s] 53%|█████▎    | 22100/41541 [00:07<00:07, 2522.38it/s] 55%|█████▍    | 22750/41541 [00:07<00:06, 2706.39it/s] 56%|█████▋    | 23400/41541 [00:07<00:07, 2445.35it/s] 58%|█████▊    | 24050/41541 [00:08<00:07, 2284.45it/s] 59%|█████▉    | 24700/41541 [00:08<00:07, 2127.64it/s] 61%|██████    | 25350/41541 [00:08<00:07, 2095.07it/s] 63%|██████▎   | 26000/41541 [00:09<00:06, 2351.59it/s] 64%|██████▍   | 26650/41541 [00:09<00:06, 2235.25it/s] 66%|██████▌   | 27300/41541 [00:09<00:06, 2312.82it/s] 67%|██████▋   | 27950/41541 [00:09<00:05, 2541.38it/s] 69%|██████▉   | 28600/41541 [00:10<00:05, 2385.82it/s] 70%|███████   | 29250/41541 [00:10<00:04, 2534.18it/s] 72%|███████▏  | 29900/41541 [00:10<00:04, 2777.73it/s] 74%|███████▎  | 30550/41541 [00:10<00:04, 2485.01it/s] 75%|███████▌  | 31200/41541 [00:11<00:03, 2644.40it/s] 77%|███████▋  | 31850/41541 [00:11<00:03, 2829.85it/s] 78%|███████▊  | 32500/41541 [00:11<00:03, 2517.51it/s] 80%|███████▉  | 33150/41541 [00:11<00:03, 2645.76it/s] 81%|████████▏ | 33800/41541 [00:12<00:02, 2744.79it/s] 83%|████████▎ | 34450/41541 [00:12<00:02, 2556.61it/s] 84%|████████▍ | 35100/41541 [00:12<00:02, 2587.51it/s] 86%|████████▌ | 35750/41541 [00:12<00:02, 2634.01it/s] 88%|████████▊ | 36400/41541 [00:13<00:02, 2392.13it/s] 89%|████████▉ | 37050/41541 [00:15<00:06, 746.30it/s]  91%|█████████ | 37700/41541 [00:15<00:03, 975.47it/s] 92%|█████████▏| 38350/41541 [00:15<00:02, 1245.48it/s] 94%|█████████▍| 39000/41541 [00:16<00:01, 1425.77it/s] 95%|█████████▌| 39650/41541 [00:16<00:01, 1716.04it/s] 97%|█████████▋| 40300/41541 [00:16<00:00, 2052.30it/s] 99%|█████████▊| 40950/41541 [00:16<00:00, 2049.24it/s]100%|██████████| 41541/41541 [00:16<00:00, 2466.61it/s]
+04/03/2026 22:49:00 - INFO - __main__ -   ***** Running evaluation  *****
+04/03/2026 22:49:00 - INFO - __main__ -     Num examples = 41541
+04/03/2026 22:49:00 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/CCD/module/SETTING-3/SEP/starencoder/code/model.py:44: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)
+04/03/2026 22:53:45 - INFO - __main__ -   ***** Eval results  *****
+04/03/2026 22:53:45 - INFO - __main__ -     eval_f1 = 0.9345
+04/03/2026 22:53:45 - INFO - __main__ -     eval_precision = 0.9638
+04/03/2026 22:53:45 - INFO - __main__ -     eval_recall = 0.9069
+04/03/2026 22:53:45 - INFO - __main__ -     eval_threshold = 0.93
+04/03/2026 22:53:48 - INFO - __main__ -   Creating features from index file at ../dataset/test.txt 
+  0%|          | 0/415416 [00:00<?, ?it/s]  3%|▎         | 12982/415416 [00:00<00:03, 129084.27it/s]  6%|▋         | 25964/415416 [00:00<00:03, 105217.35it/s]  9%|▉         | 38946/415416 [00:00<00:03, 103245.56it/s] 13%|█▎        | 51928/415416 [00:00<00:03, 111191.23it/s] 16%|█▌        | 64910/415416 [00:00<00:03, 104455.93it/s] 19%|█▉        | 77892/415416 [00:00<00:03, 106970.39it/s] 22%|██▏       | 90874/415416 [00:00<00:03, 107939.11it/s] 25%|██▌       | 103856/415416 [00:01<00:03, 98173.52it/s] 27%|██▋       | 113898/415416 [00:11<01:25, 3535.82it/s]  28%|██▊       | 116838/415416 [00:12<01:24, 3548.05it/s] 30%|██▉       | 123855/415416 [00:13<01:09, 4175.13it/s] 31%|███▏      | 129820/415416 [00:14<01:01, 4641.15it/s] 33%|███▎      | 136311/415416 [00:16<01:06, 4166.49it/s] 34%|███▍      | 142802/415416 [00:16<00:56, 4822.15it/s] 36%|███▌      | 149293/415416 [00:17<00:48, 5439.17it/s] 38%|███▊      | 155784/415416 [00:18<00:43, 5921.23it/s] 39%|███▉      | 162275/415416 [00:19<00:39, 6370.04it/s] 41%|████      | 168766/415416 [00:20<00:37, 6585.42it/s] 42%|████▏     | 175257/415416 [00:21<00:35, 6800.58it/s] 44%|████▍     | 181748/415416 [00:24<01:01, 3775.50it/s] 45%|████▌     | 188239/415416 [00:25<00:50, 4485.49it/s] 47%|████▋     | 194730/415416 [00:26<00:43, 5115.33it/s] 48%|████▊     | 201221/415416 [00:27<00:37, 5730.95it/s] 50%|█████     | 207712/415416 [00:27<00:33, 6283.64it/s] 52%|█████▏    | 214203/415416 [00:28<00:30, 6677.24it/s] 53%|█████▎    | 220694/415416 [00:29<00:28, 6881.74it/s] 55%|█████▍    | 227185/415416 [00:30<00:26, 6975.84it/s] 56%|█████▋    | 233676/415416 [00:35<00:59, 3069.79it/s] 58%|█████▊    | 240167/415416 [00:36<00:46, 3740.33it/s] 59%|█████▉    | 246658/415416 [00:37<00:37, 4489.86it/s] 61%|██████    | 253149/415416 [00:37<00:31, 5127.42it/s] 63%|██████▎   | 259640/415416 [00:38<00:27, 5742.27it/s] 64%|██████▍   | 266131/415416 [00:39<00:24, 6158.40it/s] 66%|██████▌   | 272622/415416 [00:40<00:21, 6593.13it/s] 67%|██████▋   | 279113/415416 [00:41<00:19, 6967.43it/s] 69%|██████▉   | 285604/415416 [00:41<00:17, 7262.90it/s] 70%|███████   | 292095/415416 [00:42<00:16, 7434.59it/s] 70%|███████   | 292095/415416 [00:57<00:16, 7434.59it/s] 72%|███████▏  | 298586/415416 [00:57<01:27, 1328.38it/s] 73%|███████▎  | 305077/415416 [00:58<01:06, 1652.62it/s] 75%|███████▌  | 311568/415416 [01:00<00:52, 1983.66it/s] 77%|███████▋  | 318059/415416 [01:02<00:42, 2291.04it/s] 78%|███████▊  | 324550/415416 [01:04<00:35, 2559.73it/s] 80%|███████▉  | 331041/415416 [01:05<00:30, 2788.95it/s] 81%|████████▏ | 337532/415416 [01:07<00:25, 3004.69it/s] 83%|████████▎ | 344023/415416 [01:09<00:22, 3157.59it/s] 84%|████████▍ | 350514/415416 [01:11<00:19, 3297.64it/s] 86%|████████▌ | 357005/415416 [01:13<00:17, 3416.65it/s] 88%|████████▊ | 363496/415416 [01:14<00:15, 3429.73it/s] 89%|████████▉ | 369987/415416 [01:16<00:12, 3495.48it/s] 91%|█████████ | 376478/415416 [01:35<00:42, 924.98it/s]  92%|█████████▏| 382969/415416 [01:37<00:27, 1196.08it/s] 94%|█████████▍| 389460/415416 [01:39<00:17, 1494.45it/s] 95%|█████████▌| 395951/415416 [01:40<00:10, 1838.29it/s] 97%|█████████▋| 402442/415416 [01:42<00:06, 2146.52it/s] 98%|█████████▊| 408933/415416 [01:44<00:02, 2451.61it/s]100%|██████████| 415416/415416 [01:44<00:00, 3973.43it/s]
+04/03/2026 22:56:07 - INFO - __main__ -   ***** Running Test  *****
+04/03/2026 22:56:07 - INFO - __main__ -     Num examples = 415416
+04/03/2026 22:56:07 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/CCD/module/SETTING-3/SEP/starencoder/code/model.py:44: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)

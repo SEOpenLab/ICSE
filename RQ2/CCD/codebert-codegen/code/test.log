@@ -1,0 +1,215 @@
+04/24/2026 13:29:56 - WARNING - __main__ -   Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+Some weights of the model checkpoint at ./codegen-350M-multi were not used when initializing CodeGenModel: ['lm_head.weight', 'lm_head.bias']
+- This IS expected if you are initializing CodeGenModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing CodeGenModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+04/24/2026 13:30:01 - INFO - __main__ -   Training/evaluation parameters Namespace(train_data_file='../dataset/train.txt', output_dir='./saved_models', eval_data_file='../dataset/valid.txt', test_data_file='../dataset/test.txt', model_type='roberta', model_name_or_path='./codebert-base', mlm=False, mlm_probability=0.15, config_name='./codebert-base', tokenizer_name='roberta-base', cache_dir='', block_size=400, do_train=False, do_eval=True, do_test=True, evaluate_during_training=True, do_lower_case=False, train_batch_size=16, eval_batch_size=32, gradient_accumulation_steps=1, learning_rate=5e-05, weight_decay=0.0, adam_epsilon=1e-08, max_grad_norm=1.0, num_train_epochs=1.0, max_steps=-1, warmup_steps=0, logging_steps=50, save_steps=50, save_total_limit=None, eval_all_checkpoints=False, no_cuda=False, overwrite_output_dir=False, overwrite_cache=False, seed=123456, epoch=100, fp16=False, fp16_opt_level='O1', local_rank=-1, server_ip='', server_port='', n_gpu=1, device=device(type='cuda'), per_gpu_train_batch_size=16, per_gpu_eval_batch_size=32, start_epoch=0, start_step=0)
+04/24/2026 13:30:02 - INFO - __main__ -   Creating features from index file at ../dataset/valid.txt 
+RobertaModel(
+  (embeddings): RobertaEmbeddings(
+    (word_embeddings): Embedding(50265, 768, padding_idx=1)
+    (position_embeddings): Embedding(514, 768, padding_idx=1)
+    (token_type_embeddings): Embedding(1, 768)
+    (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): RobertaEncoder(
+    (layer): ModuleList(
+      (0-3): 4 x RobertaLayer(
+        (attention): RobertaAttention(
+          (self): RobertaSelfAttention(
+            (query): Linear(in_features=768, out_features=768, bias=True)
+            (key): Linear(in_features=768, out_features=768, bias=True)
+            (value): Linear(in_features=768, out_features=768, bias=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (output): RobertaSelfOutput(
+            (dense): Linear(in_features=768, out_features=768, bias=True)
+            (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (intermediate): RobertaIntermediate(
+          (dense): Linear(in_features=768, out_features=3072, bias=True)
+          (intermediate_act_fn): GELUActivation()
+        )
+        (output): RobertaOutput(
+          (dense): Linear(in_features=3072, out_features=768, bias=True)
+          (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+  )
+  (pooler): RobertaPooler(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (activation): Tanh()
+  )
+)
+CodeGenModel(
+  (wte): Embedding(51200, 1024)
+  (drop): Dropout(p=0.0, inplace=False)
+  (h): ModuleList(
+    (0-1): 2 x CodeGenBlock(
+      (ln_1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+      (attn): CodeGenAttention(
+        (attn_dropout): Dropout(p=0.0, inplace=False)
+        (resid_dropout): Dropout(p=0.0, inplace=False)
+        (qkv_proj): Linear(in_features=1024, out_features=3072, bias=False)
+        (out_proj): Linear(in_features=1024, out_features=1024, bias=False)
+      )
+      (mlp): CodeGenMLP(
+        (fc_in): Linear(in_features=1024, out_features=4096, bias=True)
+        (fc_out): Linear(in_features=4096, out_features=1024, bias=True)
+        (act): NewGELUActivation()
+        (dropout): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (ln_f): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+)
+  0%|          | 0/41541 [00:00<?, ?it/s]  3%|▎         | 1300/41541 [00:00<00:03, 10543.95it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1379 > 512). Running this sequence through the model will result in indexing errors
+  6%|▋         | 2600/41541 [00:00<00:03, 11342.20it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (4802 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (600 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (867 > 512). Running this sequence through the model will result in indexing errors
+  9%|▉         | 3900/41541 [00:00<00:03, 11450.34it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1327 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (758 > 512). Running this sequence through the model will result in indexing errors
+ 13%|█▎        | 5200/41541 [00:00<00:03, 11135.06it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1288 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (848 > 512). Running this sequence through the model will result in indexing errors
+ 16%|█▌        | 6500/41541 [00:00<00:03, 9608.38it/s] Token indices sequence length is longer than the specified maximum sequence length for this model (848 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (1327 > 512). Running this sequence through the model will result in indexing errors
+ 19%|█▉        | 7800/41541 [00:00<00:03, 9089.29it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1512 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (1777 > 512). Running this sequence through the model will result in indexing errors
+ 22%|██▏       | 9100/41541 [00:00<00:03, 8971.11it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (641 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (654 > 512). Running this sequence through the model will result in indexing errors
+ 25%|██▌       | 10400/41541 [00:01<00:03, 9240.77it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (727 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (878 > 512). Running this sequence through the model will result in indexing errors
+ 27%|██▋       | 11338/41541 [00:01<00:03, 8817.73it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1336 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (657 > 512). Running this sequence through the model will result in indexing errors
+ 29%|██▉       | 12225/41541 [00:01<00:05, 5773.08it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (758 > 512). Running this sequence through the model will result in indexing errors
+ 31%|███       | 12926/41541 [00:01<00:05, 5560.40it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (3279 > 512). Running this sequence through the model will result in indexing errors
+ 33%|███▎      | 13563/41541 [00:01<00:06, 4645.13it/s] 34%|███▍      | 14096/41541 [00:01<00:05, 4769.81it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (863 > 512). Running this sequence through the model will result in indexing errors
+ 35%|███▌      | 14629/41541 [00:02<00:05, 4726.27it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (790 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (522 > 512). Running this sequence through the model will result in indexing errors
+ 36%|███▋      | 15139/41541 [00:02<00:06, 4037.97it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (662 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (575 > 512). Running this sequence through the model will result in indexing errors
+ 39%|███▉      | 16250/41541 [00:02<00:05, 4250.96it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1441 > 512). Running this sequence through the model will result in indexing errors
+ 42%|████▏     | 17550/41541 [00:02<00:04, 4988.14it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (654 > 512). Running this sequence through the model will result in indexing errors
+ 44%|████▍     | 18200/41541 [00:02<00:04, 4712.79it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (607 > 512). Running this sequence through the model will result in indexing errors
+ 45%|████▌     | 18850/41541 [00:02<00:04, 5043.50it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (930 > 512). Running this sequence through the model will result in indexing errors
+ 47%|████▋     | 19500/41541 [00:03<00:04, 4783.04it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (753 > 512). Running this sequence through the model will result in indexing errors
+ 49%|████▊     | 20150/41541 [00:03<00:04, 4976.86it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (758 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (520 > 512). Running this sequence through the model will result in indexing errors
+ 50%|█████     | 20800/41541 [00:03<00:04, 4678.64it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (847 > 512). Running this sequence through the model will result in indexing errors
+ 53%|█████▎    | 22100/41541 [00:03<00:04, 4838.36it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (654 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (1052 > 512). Running this sequence through the model will result in indexing errors
+ 55%|█████▍    | 22750/41541 [00:03<00:04, 4258.16it/s] 56%|█████▋    | 23400/41541 [00:04<00:04, 4147.01it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (569 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (513 > 512). Running this sequence through the model will result in indexing errors
+ 58%|█████▊    | 24050/41541 [00:04<00:04, 3575.33it/s] 59%|█████▉    | 24700/41541 [00:04<00:04, 4027.39it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (534 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (534 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (930 > 512). Running this sequence through the model will result in indexing errors
+ 63%|██████▎   | 26000/41541 [00:04<00:03, 4182.23it/s] 64%|██████▍   | 26650/41541 [00:04<00:03, 4343.81it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (617 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (558 > 512). Running this sequence through the model will result in indexing errors
+ 66%|██████▌   | 27300/41541 [00:05<00:03, 4080.34it/s] 67%|██████▋   | 27950/41541 [00:05<00:03, 4296.25it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1126 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (670 > 512). Running this sequence through the model will result in indexing errors
+ 69%|██████▉   | 28600/41541 [00:05<00:03, 3866.14it/s] 70%|███████   | 29250/41541 [00:05<00:03, 3991.10it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (758 > 512). Running this sequence through the model will result in indexing errors
+ 72%|███████▏  | 29900/41541 [00:05<00:02, 4287.99it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1336 > 512). Running this sequence through the model will result in indexing errors
+ 74%|███████▎  | 30550/41541 [00:05<00:02, 3921.25it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (3636 > 512). Running this sequence through the model will result in indexing errors
+ 75%|███████▌  | 31200/41541 [00:05<00:02, 4039.84it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (540 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (637 > 512). Running this sequence through the model will result in indexing errors
+ 77%|███████▋  | 31850/41541 [00:08<00:11, 868.14it/s]  78%|███████▊  | 32500/41541 [00:08<00:07, 1131.30it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (2997 > 512). Running this sequence through the model will result in indexing errors
+ 80%|███████▉  | 33150/41541 [00:08<00:05, 1450.92it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (847 > 512). Running this sequence through the model will result in indexing errors
+ 81%|████████▏ | 33800/41541 [00:08<00:04, 1752.88it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (607 > 512). Running this sequence through the model will result in indexing errors
+ 83%|████████▎ | 34450/41541 [00:08<00:03, 2215.90it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (723 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (3406 > 512). Running this sequence through the model will result in indexing errors
+ 84%|████████▍ | 35100/41541 [00:09<00:02, 2269.89it/s] 86%|████████▌ | 35750/41541 [00:09<00:02, 2774.89it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (538 > 512). Running this sequence through the model will result in indexing errors
+ 88%|████████▊ | 36400/41541 [00:09<00:01, 3256.18it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (522 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (878 > 512). Running this sequence through the model will result in indexing errors
+ 89%|████████▉ | 37050/41541 [00:09<00:01, 3157.64it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (654 > 512). Running this sequence through the model will result in indexing errors
+ 91%|█████████ | 37700/41541 [00:09<00:01, 2958.72it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (662 > 512). Running this sequence through the model will result in indexing errors
+ 92%|█████████▏| 38350/41541 [00:09<00:01, 2902.68it/s] 94%|█████████▍| 39000/41541 [00:10<00:00, 3272.39it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (558 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (659 > 512). Running this sequence through the model will result in indexing errors
+ 95%|█████████▌| 39650/41541 [00:10<00:00, 3293.30it/s] 97%|█████████▋| 40300/41541 [00:10<00:00, 3787.08it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (641 > 512). Running this sequence through the model will result in indexing errors
+ 99%|█████████▊| 40950/41541 [00:10<00:00, 4225.12it/s]100%|██████████| 41541/41541 [00:10<00:00, 3953.55it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (703 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (790 > 512). Running this sequence through the model will result in indexing errors
+04/24/2026 13:30:16 - INFO - __main__ -   ***** Running evaluation  *****
+04/24/2026 13:30:16 - INFO - __main__ -     Num examples = 41541
+04/24/2026 13:30:16 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/RQ2/CCD/SEP/codebert-codegen/code/model.py:59: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)
+04/24/2026 13:33:28 - INFO - __main__ -   ***** Eval results  *****
+04/24/2026 13:33:28 - INFO - __main__ -     eval_f1 = 0.92
+04/24/2026 13:33:28 - INFO - __main__ -     eval_precision = 0.8918
+04/24/2026 13:33:28 - INFO - __main__ -     eval_recall = 0.95
+04/24/2026 13:33:28 - INFO - __main__ -     eval_threshold = 0.89
+04/24/2026 13:33:31 - INFO - __main__ -   Creating features from index file at ../dataset/test.txt 
+  0%|          | 0/415416 [00:00<?, ?it/s]  3%|▎         | 12982/415416 [00:00<00:04, 92332.10it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (602 > 512). Running this sequence through the model will result in indexing errors
+  6%|▋         | 25964/415416 [00:00<00:04, 93653.29it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1083 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (625 > 512). Running this sequence through the model will result in indexing errors
+  9%|▉         | 38946/415416 [00:00<00:03, 98958.56it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1184 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (803 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (803 > 512). Running this sequence through the model will result in indexing errors
+ 13%|█▎        | 51928/415416 [00:00<00:03, 91897.20it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (545 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (525 > 512). Running this sequence through the model will result in indexing errors
+ 16%|█▌        | 64910/415416 [00:00<00:03, 88995.93it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (584 > 512). Running this sequence through the model will result in indexing errors
+ 19%|█▉        | 77892/415416 [00:00<00:03, 90594.56it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (712 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (930 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (934 > 512). Running this sequence through the model will result in indexing errors
+ 22%|██▏       | 90874/415416 [00:01<00:03, 87968.66it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (725 > 512). Running this sequence through the model will result in indexing errors
+ 25%|██▌       | 103856/415416 [00:01<00:03, 89221.17it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (739 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (625 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (1023 > 512). Running this sequence through the model will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (693 > 512). Running this sequence through the model will result in indexing errors
+ 27%|██▋       | 112818/415416 [00:10<01:20, 3766.88it/s] Token indices sequence length is longer than the specified maximum sequence length for this model (795 > 512). Running this sequence through the model will result in indexing errors
+ 29%|██▊       | 119008/415416 [00:12<01:15, 3941.09it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (637 > 512). Running this sequence through the model will result in indexing errors
+ 30%|██▉       | 123438/415416 [00:13<01:14, 3934.11it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1406 > 512). Running this sequence through the model will result in indexing errors
+ 31%|███▏      | 129820/415416 [00:16<01:34, 3016.07it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (930 > 512). Running this sequence through the model will result in indexing errors
+ 33%|███▎      | 136311/415416 [00:17<01:19, 3489.63it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (3153 > 512). Running this sequence through the model will result in indexing errors
+ 34%|███▍      | 142802/415416 [00:18<01:09, 3934.56it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1195 > 512). Running this sequence through the model will result in indexing errors
+ 36%|███▌      | 149293/415416 [00:19<01:00, 4394.26it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1588 > 512). Running this sequence through the model will result in indexing errors
+ 38%|███▊      | 155784/415416 [00:21<00:54, 4763.85it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (554 > 512). Running this sequence through the model will result in indexing errors
+ 39%|███▉      | 162275/415416 [00:22<00:49, 5104.87it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (561 > 512). Running this sequence through the model will result in indexing errors
+ 41%|████      | 168766/415416 [00:27<01:32, 2677.83it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (545 > 512). Running this sequence through the model will result in indexing errors
+ 42%|████▏     | 175257/415416 [00:28<01:14, 3214.80it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (604 > 512). Running this sequence through the model will result in indexing errors
+ 44%|████▍     | 181748/415416 [00:29<01:01, 3794.20it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (608 > 512). Running this sequence through the model will result in indexing errors
+ 45%|████▌     | 188239/415416 [00:30<00:53, 4248.24it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1111 > 512). Running this sequence through the model will result in indexing errors
+ 47%|████▋     | 194730/415416 [00:31<00:47, 4673.68it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (652 > 512). Running this sequence through the model will result in indexing errors
+ 48%|████▊     | 201221/415416 [00:32<00:42, 5031.23it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (552 > 512). Running this sequence through the model will result in indexing errors
+ 50%|█████     | 207712/415416 [00:33<00:39, 5262.51it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (967 > 512). Running this sequence through the model will result in indexing errors
+ 52%|█████▏    | 214203/415416 [00:40<01:33, 2144.12it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1796 > 512). Running this sequence through the model will result in indexing errors
+ 53%|█████▎    | 220694/415416 [00:42<01:16, 2558.42it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (918 > 512). Running this sequence through the model will result in indexing errors
+ 55%|█████▍    | 227185/415416 [00:43<01:02, 3020.30it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (596 > 512). Running this sequence through the model will result in indexing errors
+ 56%|█████▋    | 233676/415416 [00:44<00:52, 3430.57it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1032 > 512). Running this sequence through the model will result in indexing errors
+ 58%|█████▊    | 240167/415416 [00:45<00:45, 3858.17it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (544 > 512). Running this sequence through the model will result in indexing errors
+ 59%|█████▉    | 246658/415416 [00:47<00:42, 3974.57it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (693 > 512). Running this sequence through the model will result in indexing errors
+ 61%|██████    | 253149/415416 [00:49<00:40, 4009.04it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (930 > 512). Running this sequence through the model will result in indexing errors
+ 63%|██████▎   | 259640/415416 [00:50<00:37, 4149.15it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1023 > 512). Running this sequence through the model will result in indexing errors
+ 64%|██████▍   | 266131/415416 [00:51<00:33, 4496.12it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (637 > 512). Running this sequence through the model will result in indexing errors
+ 66%|██████▌   | 272622/415416 [01:04<01:44, 1361.08it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (712 > 512). Running this sequence through the model will result in indexing errors
+ 67%|██████▋   | 279113/415416 [01:05<01:20, 1697.48it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1863 > 512). Running this sequence through the model will result in indexing errors
+ 69%|██████▉   | 285604/415416 [01:07<01:02, 2064.63it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (633 > 512). Running this sequence through the model will result in indexing errors
+ 70%|███████   | 292095/415416 [01:08<00:50, 2440.12it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (701 > 512). Running this sequence through the model will result in indexing errors
+ 72%|███████▏  | 298586/415416 [01:10<00:40, 2855.04it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (758 > 512). Running this sequence through the model will result in indexing errors
+ 73%|███████▎  | 305077/415416 [01:11<00:33, 3262.50it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (763 > 512). Running this sequence through the model will result in indexing errors
+ 75%|███████▌  | 311568/415416 [01:13<00:29, 3497.60it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (813 > 512). Running this sequence through the model will result in indexing errors
+ 77%|███████▋  | 318059/415416 [01:14<00:25, 3885.52it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (563 > 512). Running this sequence through the model will result in indexing errors
+ 78%|███████▊  | 324550/415416 [01:15<00:22, 4007.95it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (746 > 512). Running this sequence through the model will result in indexing errors
+ 80%|███████▉  | 331041/415416 [01:17<00:20, 4164.40it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (712 > 512). Running this sequence through the model will result in indexing errors
+ 81%|████████▏ | 337532/415416 [01:34<01:15, 1026.04it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (701 > 512). Running this sequence through the model will result in indexing errors
+ 83%|████████▎ | 344023/415416 [01:36<00:52, 1350.34it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (767 > 512). Running this sequence through the model will result in indexing errors
+ 84%|████████▍ | 350514/415416 [01:37<00:38, 1682.77it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (546 > 512). Running this sequence through the model will result in indexing errors
+ 86%|████████▌ | 357005/415416 [01:39<00:28, 2073.33it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (778 > 512). Running this sequence through the model will result in indexing errors
+ 88%|████████▊ | 363496/415416 [01:40<00:20, 2530.17it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (930 > 512). Running this sequence through the model will result in indexing errors
+ 89%|████████▉ | 369987/415416 [01:41<00:15, 2934.58it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (549 > 512). Running this sequence through the model will result in indexing errors
+ 91%|█████████ | 376478/415416 [01:43<00:11, 3356.25it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (758 > 512). Running this sequence through the model will result in indexing errors
+ 92%|█████████▏| 382969/415416 [01:44<00:08, 3657.92it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (1062 > 512). Running this sequence through the model will result in indexing errors
+ 94%|█████████▍| 389460/415416 [01:45<00:06, 3842.14it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (738 > 512). Running this sequence through the model will result in indexing errors
+ 95%|█████████▌| 395951/415416 [01:47<00:04, 3919.09it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (761 > 512). Running this sequence through the model will result in indexing errors
+ 97%|█████████▋| 402442/415416 [01:48<00:03, 4101.75it/s]Token indices sequence length is longer than the specified maximum sequence length for this model (561 > 512). Running this sequence through the model will result in indexing errors
+ 98%|█████████▊| 408933/415416 [01:50<00:01, 4250.67it/s]100%|██████████| 415416/415416 [01:50<00:00, 3765.68it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (560 > 512). Running this sequence through the model will result in indexing errors
+04/24/2026 13:36:42 - INFO - __main__ -   ***** Running Test  *****
+04/24/2026 13:36:42 - INFO - __main__ -     Num examples = 415416
+04/24/2026 13:36:42 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/RQ2/CCD/SEP/codebert-codegen/code/model.py:59: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)

@@ -1,0 +1,70 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+import torch
+import torch.nn as nn
+import torch
+from torch.autograd import Variable
+import copy
+from torch.nn import CrossEntropyLoss, MSELoss
+import torch.nn.functional as F
+
+import pandas as pd
+    
+class RobertaClassificationHead(nn.Module):
+    """Head for sentence-level classification tasks."""
+
+    def __init__(self, config):
+        super().__init__()
+        self.dropout = nn.Dropout(config.summary_first_dropout)
+        self.out_proj = nn.Linear(config.n_embd, 2)
+
+    def forward(self, features, **kwargs):
+        x = features
+        x = self.dropout(x)
+        #x = torch.tanh(x)
+        x = self.out_proj(x)
+        return x
+
+    
+class Model(nn.Module):   
+    def __init__(self, encoder,config,tokenizer,args):
+        super(Model, self).__init__()
+        self.encoder = encoder
+        self.config=config
+        self.tokenizer=tokenizer
+        self.args=args
+
+        self.classifier=RobertaClassificationHead(config)
+        
+    def forward(self, input_ids=None,attention_mask=None,labels=None): 
+        outputs=self.encoder(input_ids=input_ids,attention_mask=attention_mask)[0]
+        #output = outputs[:, -1, :]  #隐藏层的最后一个标记对应的向量  
+
+        #mean-pooling
+        attention_mask_mean = attention_mask.clone()
+        print("------------------------------attention-mask------------------------")
+        print(attention_mask_mean)
+        attention_mask_mean[:, -1] = 0
+        print("------------------------------attention-mask-mean-----------------------")
+        print(attention_mask_mean)
+        # mean pooling
+        input_mask_expanded = attention_mask_mean.unsqueeze(-1).float()
+        output = torch.sum(outputs * input_mask_expanded, dim=1) / torch.clamp(input_mask_expanded.sum(dim=1), min=1e-9)
+
+
+        logits = self.classifier(output)
+        #prob=F.softmax(logits)
+        prob=torch.sigmoid(logits)
+        if labels is not None:
+            #loss_fct = CrossEntropyLoss()
+            #loss = loss_fct(logits, labels)
+            labels=labels.float()
+            loss=torch.log(prob[:,0]+1e-10)*labels+torch.log((1-prob)[:,0]+1e-10)*(1-labels)
+            loss=-loss.mean()
+
+            return loss,prob
+        else:
+            return prob
+      
+        
+ 

@@ -1,0 +1,36 @@
+python run.py \
+    --output_dir=./saved_models \
+    --model_type=auto \
+    --config_name=./starencoder \
+    --model_name_or_path=./starencoder \
+    --tokenizer_name=./starencoder \
+    --do_train \
+    --train_data_file=../dataset/train.txt \
+    --eval_data_file=../dataset/valid.txt \
+    --test_data_file=../dataset/test.txt \
+    --epoch 100 \
+    --block_size 400 \
+    --train_batch_size 16 \
+    --eval_batch_size 32 \
+    --learning_rate 5e-5 \
+    --max_grad_norm 1.0 \
+    --evaluate_during_training \
+    --seed 123456 2>&1| tee train.log && python run.py \
+    --output_dir=./saved_models \
+    --model_type=auto \
+    --config_name=./starencoder \
+    --model_name_or_path=./starencoder \
+    --tokenizer_name=./starencoder \
+    --do_eval \
+    --do_test \
+    --train_data_file=../dataset/train.txt \
+    --eval_data_file=../dataset/valid.txt \
+    --test_data_file=../dataset/test.txt \
+    --epoch 100 \
+    --block_size 400 \
+    --train_batch_size 16 \
+    --eval_batch_size 32 \
+    --learning_rate 5e-5 \
+    --max_grad_norm 1.0 \
+    --evaluate_during_training \
+    --seed 123456 2>&1| tee test.log && python ../evaluator/evaluator.py -a ../dataset/test.txt -p saved_models/predictions.txt

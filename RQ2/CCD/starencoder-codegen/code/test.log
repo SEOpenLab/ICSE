@@ -1,0 +1,90 @@
+04/25/2026 11:44:57 - WARNING - __main__ -   Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+Some weights of the model checkpoint at ./starencoder were not used when initializing BertModel: ['cls.predictions.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.decoder.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.seq_relationship.bias', 'cls.predictions.decoder.weight', 'cls.seq_relationship.weight', 'cls.predictions.transform.LayerNorm.bias']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of the model checkpoint at ./codegen-350M-multi were not used when initializing CodeGenModel: ['lm_head.bias', 'lm_head.weight']
+- This IS expected if you are initializing CodeGenModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing CodeGenModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+04/25/2026 11:45:06 - INFO - __main__ -   Training/evaluation parameters Namespace(train_data_file='../dataset/train.txt', output_dir='./saved_models', eval_data_file='../dataset/valid.txt', test_data_file='../dataset/test.txt', model_type='roberta', model_name_or_path='./codebert-base', mlm=False, mlm_probability=0.15, config_name='./codebert-base', tokenizer_name='roberta-base', cache_dir='', block_size=400, do_train=False, do_eval=True, do_test=True, evaluate_during_training=True, do_lower_case=False, train_batch_size=16, eval_batch_size=32, gradient_accumulation_steps=1, learning_rate=5e-05, weight_decay=0.0, adam_epsilon=1e-08, max_grad_norm=1.0, num_train_epochs=1.0, max_steps=-1, warmup_steps=0, logging_steps=50, save_steps=50, save_total_limit=None, eval_all_checkpoints=False, no_cuda=False, overwrite_output_dir=False, overwrite_cache=False, seed=123456, epoch=100, fp16=False, fp16_opt_level='O1', local_rank=-1, server_ip='', server_port='', n_gpu=1, device=device(type='cuda'), per_gpu_train_batch_size=16, per_gpu_eval_batch_size=32, start_epoch=0, start_step=0)
+04/25/2026 11:45:07 - INFO - __main__ -   Creating features from index file at ../dataset/valid.txt 
+BertModel(
+  (embeddings): BertEmbeddings(
+    (word_embeddings): Embedding(49156, 768, padding_idx=49152)
+    (position_embeddings): Embedding(1024, 768)
+    (token_type_embeddings): Embedding(2, 768)
+    (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (encoder): BertEncoder(
+    (layer): ModuleList(
+      (0-3): 4 x BertLayer(
+        (attention): BertAttention(
+          (self): BertSelfAttention(
+            (query): Linear(in_features=768, out_features=768, bias=True)
+            (key): Linear(in_features=768, out_features=768, bias=True)
+            (value): Linear(in_features=768, out_features=768, bias=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (output): BertSelfOutput(
+            (dense): Linear(in_features=768, out_features=768, bias=True)
+            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (intermediate): BertIntermediate(
+          (dense): Linear(in_features=768, out_features=3072, bias=True)
+          (intermediate_act_fn): GELUActivation()
+        )
+        (output): BertOutput(
+          (dense): Linear(in_features=3072, out_features=768, bias=True)
+          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+  )
+  (pooler): BertPooler(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (activation): Tanh()
+  )
+)
+CodeGenModel(
+  (wte): Embedding(51200, 1024)
+  (drop): Dropout(p=0.0, inplace=False)
+  (h): ModuleList(
+    (0-1): 2 x CodeGenBlock(
+      (ln_1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+      (attn): CodeGenAttention(
+        (attn_dropout): Dropout(p=0.0, inplace=False)
+        (resid_dropout): Dropout(p=0.0, inplace=False)
+        (qkv_proj): Linear(in_features=1024, out_features=3072, bias=False)
+        (out_proj): Linear(in_features=1024, out_features=1024, bias=False)
+      )
+      (mlp): CodeGenMLP(
+        (fc_in): Linear(in_features=1024, out_features=4096, bias=True)
+        (fc_out): Linear(in_features=4096, out_features=1024, bias=True)
+        (act): NewGELUActivation()
+        (dropout): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (ln_f): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+)
+  0%|          | 0/41541 [00:00<?, ?it/s]  3%|▎         | 1300/41541 [00:00<00:04, 8849.98it/s]  6%|▋         | 2600/41541 [00:00<00:04, 9460.99it/s]  9%|▉         | 3900/41541 [00:00<00:03, 9837.83it/s] 13%|█▎        | 5200/41541 [00:00<00:03, 9888.66it/s] 16%|█▌        | 6500/41541 [00:00<00:03, 8825.95it/s] 19%|█▉        | 7800/41541 [00:00<00:03, 9054.30it/s] 22%|██▏       | 9100/41541 [00:01<00:03, 8686.60it/s] 25%|██▌       | 10400/41541 [00:01<00:04, 7354.32it/s] 27%|██▋       | 11177/41541 [00:01<00:04, 6691.69it/s] 29%|██▊       | 11868/41541 [00:01<00:05, 5285.21it/s] 30%|██▉       | 12438/41541 [00:01<00:05, 5010.28it/s] 31%|███▏      | 13000/41541 [00:02<00:07, 3906.44it/s] 33%|███▎      | 13650/41541 [00:02<00:06, 4140.35it/s] 34%|███▍      | 14300/41541 [00:02<00:06, 4338.38it/s] 36%|███▌      | 14950/41541 [00:02<00:06, 4099.05it/s] 38%|███▊      | 15600/41541 [00:02<00:06, 4270.94it/s] 39%|███▉      | 16250/41541 [00:02<00:06, 4208.25it/s] 41%|████      | 16900/41541 [00:02<00:05, 4645.71it/s] 42%|████▏     | 17550/41541 [00:03<00:05, 4322.77it/s] 44%|████▍     | 18200/41541 [00:03<00:05, 4508.40it/s] 45%|████▌     | 18850/41541 [00:03<00:04, 4655.02it/s] 47%|████▋     | 19500/41541 [00:03<00:05, 4312.13it/s] 49%|████▊     | 20150/41541 [00:03<00:04, 4714.83it/s] 50%|█████     | 20800/41541 [00:03<00:04, 4469.64it/s] 52%|█████▏    | 21450/41541 [00:03<00:04, 4928.37it/s] 53%|█████▎    | 22100/41541 [00:03<00:03, 5280.89it/s] 55%|█████▍    | 22750/41541 [00:04<00:03, 4777.46it/s] 56%|█████▋    | 23400/41541 [00:04<00:03, 5125.41it/s] 58%|█████▊    | 24050/41541 [00:04<00:04, 4086.21it/s] 59%|█████▉    | 24700/41541 [00:04<00:03, 4470.19it/s] 61%|██████    | 25350/41541 [00:04<00:03, 4272.61it/s] 63%|██████▎   | 26000/41541 [00:04<00:03, 4713.77it/s] 64%|██████▍   | 26650/41541 [00:04<00:03, 4904.63it/s] 66%|██████▌   | 27300/41541 [00:05<00:03, 4444.50it/s] 67%|██████▋   | 27950/41541 [00:05<00:03, 4411.67it/s] 69%|██████▉   | 28600/41541 [00:05<00:03, 3919.26it/s] 70%|███████   | 29250/41541 [00:05<00:02, 4347.81it/s] 72%|███████▏  | 29900/41541 [00:05<00:02, 4796.34it/s] 74%|███████▎  | 30550/41541 [00:07<00:09, 1128.42it/s] 75%|███████▌  | 31200/41541 [00:07<00:07, 1469.78it/s] 77%|███████▋  | 31850/41541 [00:07<00:05, 1814.35it/s] 78%|███████▊  | 32500/41541 [00:07<00:04, 2257.01it/s] 80%|███████▉  | 33150/41541 [00:07<00:03, 2726.27it/s] 81%|████████▏ | 33800/41541 [00:08<00:02, 2802.87it/s] 83%|████████▎ | 34450/41541 [00:08<00:02, 3237.24it/s] 84%|████████▍ | 35100/41541 [00:08<00:01, 3328.06it/s] 86%|████████▌ | 35750/41541 [00:08<00:01, 3695.44it/s] 88%|████████▊ | 36400/41541 [00:08<00:01, 3699.87it/s] 89%|████████▉ | 37050/41541 [00:08<00:01, 4105.26it/s] 91%|█████████ | 37700/41541 [00:08<00:00, 4353.73it/s] 92%|█████████▏| 38350/41541 [00:09<00:00, 3988.47it/s] 94%|█████████▍| 39000/41541 [00:09<00:00, 4417.69it/s] 95%|█████████▌| 39650/41541 [00:09<00:00, 4322.83it/s] 97%|█████████▋| 40300/41541 [00:09<00:00, 4790.31it/s] 99%|█████████▊| 40950/41541 [00:09<00:00, 5108.06it/s]100%|██████████| 41541/41541 [00:09<00:00, 4322.96it/s]
+04/25/2026 11:45:20 - INFO - __main__ -   ***** Running evaluation  *****
+04/25/2026 11:45:20 - INFO - __main__ -     Num examples = 41541
+04/25/2026 11:45:20 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/RQ2/CCD/SEP/starencoder-codegen/code/model.py:59: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)
+04/25/2026 11:48:32 - INFO - __main__ -   ***** Eval results  *****
+04/25/2026 11:48:32 - INFO - __main__ -     eval_f1 = 0.8811
+04/25/2026 11:48:32 - INFO - __main__ -     eval_precision = 0.8096
+04/25/2026 11:48:32 - INFO - __main__ -     eval_recall = 0.9663
+04/25/2026 11:48:32 - INFO - __main__ -     eval_threshold = 0.86
+04/25/2026 11:48:36 - INFO - __main__ -   Creating features from index file at ../dataset/test.txt 
+  0%|          | 0/415416 [00:00<?, ?it/s]  2%|▏         | 6491/415416 [00:00<00:06, 64711.81it/s]  5%|▍         | 19473/415416 [00:00<00:05, 73401.28it/s]  8%|▊         | 32455/415416 [00:00<00:04, 77136.70it/s] 11%|█         | 45437/415416 [00:00<00:04, 78313.80it/s] 14%|█▍        | 58419/415416 [00:00<00:04, 84738.39it/s] 17%|█▋        | 71401/415416 [00:00<00:03, 86382.04it/s] 20%|██        | 84383/415416 [00:01<00:03, 87014.72it/s] 23%|██▎       | 97365/415416 [00:01<00:03, 89382.11it/s] 27%|██▋       | 110347/415416 [00:10<01:12, 4229.59it/s] 28%|██▊       | 116838/415416 [00:11<01:07, 4455.62it/s] 30%|██▉       | 123329/415416 [00:14<01:16, 3830.02it/s] 31%|███▏      | 129820/415416 [00:15<01:09, 4137.38it/s] 33%|███▎      | 136311/415416 [00:16<01:02, 4458.93it/s] 34%|███▍      | 142802/415416 [00:17<00:56, 4816.85it/s] 36%|███▌      | 149293/415416 [00:18<00:52, 5074.62it/s] 38%|███▊      | 155784/415416 [00:19<00:50, 5120.18it/s] 39%|███▉      | 162275/415416 [00:24<01:25, 2971.91it/s] 41%|████      | 168766/415416 [00:25<01:11, 3426.72it/s] 42%|████▏     | 175257/415416 [00:26<01:01, 3909.25it/s] 44%|████▍     | 181748/415416 [00:27<00:53, 4406.30it/s] 45%|████▌     | 188239/415416 [00:28<00:48, 4664.00it/s] 47%|████▋     | 194730/415416 [00:29<00:43, 5035.62it/s] 48%|████▊     | 201221/415416 [00:31<00:40, 5224.27it/s] 50%|█████     | 207712/415416 [00:37<01:32, 2251.59it/s] 52%|█████▏    | 214203/415416 [00:39<01:14, 2716.47it/s] 53%|█████▎    | 220694/415416 [00:40<00:59, 3248.10it/s] 55%|█████▍    | 227185/415416 [00:41<00:49, 3789.01it/s] 56%|█████▋    | 233676/415416 [00:42<00:42, 4240.64it/s] 58%|█████▊    | 240167/415416 [00:43<00:37, 4640.34it/s] 59%|█████▉    | 246658/415416 [00:44<00:34, 4869.03it/s] 61%|██████    | 253149/415416 [00:45<00:32, 4959.36it/s] 63%|██████▎   | 259640/415416 [01:03<02:32, 1019.83it/s] 64%|██████▍   | 266131/415416 [01:05<01:50, 1352.84it/s] 66%|██████▌   | 272622/415416 [01:06<01:21, 1757.32it/s] 67%|██████▋   | 279113/415416 [01:07<01:01, 2213.08it/s] 69%|██████▉   | 285604/415416 [01:08<00:47, 2728.26it/s] 70%|███████   | 292095/415416 [01:09<00:38, 3235.32it/s] 72%|███████▏  | 298586/415416 [01:10<00:30, 3782.16it/s] 73%|███████▎  | 305077/415416 [01:11<00:26, 4169.32it/s] 75%|███████▌  | 311568/415416 [01:12<00:23, 4505.97it/s] 77%|███████▋  | 318059/415416 [01:14<00:20, 4863.84it/s] 77%|███████▋  | 318059/415416 [01:28<00:20, 4863.84it/s] 78%|███████▊  | 324550/415416 [01:28<01:14, 1224.00it/s] 80%|███████▉  | 331041/415416 [01:29<00:52, 1607.40it/s] 81%|████████▏ | 337532/415416 [01:30<00:38, 2043.29it/s] 83%|████████▎ | 344023/415416 [01:32<00:28, 2512.93it/s] 84%|████████▍ | 350514/415416 [01:33<00:21, 3003.93it/s] 86%|████████▌ | 357005/415416 [01:34<00:16, 3463.15it/s] 88%|████████▊ | 363496/415416 [01:35<00:13, 3973.32it/s] 89%|████████▉ | 369987/415416 [01:36<00:10, 4286.64it/s] 91%|█████████ | 376478/415416 [01:37<00:08, 4606.03it/s] 92%|█████████▏| 382969/415416 [01:39<00:06, 4846.51it/s] 94%|█████████▍| 389460/415416 [01:40<00:05, 4949.52it/s] 95%|█████████▌| 395951/415416 [01:41<00:03, 5099.95it/s] 95%|█████████▌| 395951/415416 [01:58<00:03, 5099.95it/s] 97%|█████████▋| 402442/415416 [01:58<00:11, 1092.63it/s] 98%|█████████▊| 408933/415416 [01:59<00:04, 1446.91it/s]100%|██████████| 415416/415416 [01:59<00:00, 3476.87it/s]
+04/25/2026 11:51:15 - INFO - __main__ -   ***** Running Test  *****
+04/25/2026 11:51:15 - INFO - __main__ -     Num examples = 415416
+04/25/2026 11:51:15 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/RQ2/CCD/SEP/starencoder-codegen/code/model.py:59: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)

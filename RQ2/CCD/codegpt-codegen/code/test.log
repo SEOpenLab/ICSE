@@ -1,0 +1,74 @@
+04/25/2026 12:52:15 - WARNING - __main__ -   Process rank: -1, device: cuda, n_gpu: 1, distributed training: False, 16-bits training: False
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Some weights of the model checkpoint at ./CodeGPT-small-java were not used when initializing GPT2Model: ['lm_head.weight']
+- This IS expected if you are initializing GPT2Model from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing GPT2Model from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of the model checkpoint at ./codegen-350M-multi were not used when initializing CodeGenModel: ['lm_head.weight', 'lm_head.bias']
+- This IS expected if you are initializing CodeGenModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing CodeGenModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+04/25/2026 12:52:22 - INFO - __main__ -   Training/evaluation parameters Namespace(train_data_file='../dataset/train.txt', output_dir='./saved_models', eval_data_file='../dataset/valid.txt', test_data_file='../dataset/test.txt', model_type='roberta', model_name_or_path='./codebert-base', mlm=False, mlm_probability=0.15, config_name='./codebert-base', tokenizer_name='roberta-base', cache_dir='', block_size=400, do_train=False, do_eval=True, do_test=True, evaluate_during_training=True, do_lower_case=False, train_batch_size=16, eval_batch_size=32, gradient_accumulation_steps=1, learning_rate=5e-05, weight_decay=0.0, adam_epsilon=1e-08, max_grad_norm=1.0, num_train_epochs=1.0, max_steps=-1, warmup_steps=0, logging_steps=50, save_steps=50, save_total_limit=None, eval_all_checkpoints=False, no_cuda=False, overwrite_output_dir=False, overwrite_cache=False, seed=123456, epoch=100, fp16=False, fp16_opt_level='O1', local_rank=-1, server_ip='', server_port='', n_gpu=1, device=device(type='cuda'), per_gpu_train_batch_size=16, per_gpu_eval_batch_size=32, start_epoch=0, start_step=0)
+04/25/2026 12:52:24 - INFO - __main__ -   Creating features from index file at ../dataset/valid.txt 
+GPT2Model(
+  (wte): Embedding(52000, 768)
+  (wpe): Embedding(1024, 768)
+  (drop): Dropout(p=0.1, inplace=False)
+  (h): ModuleList(
+    (0-3): 4 x GPT2Block(
+      (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (attn): GPT2Attention(
+        (c_attn): Conv1D()
+        (c_proj): Conv1D()
+        (attn_dropout): Dropout(p=0.1, inplace=False)
+        (resid_dropout): Dropout(p=0.1, inplace=False)
+      )
+      (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      (mlp): GPT2MLP(
+        (c_fc): Conv1D()
+        (c_proj): Conv1D()
+        (act): NewGELUActivation()
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+  )
+  (ln_f): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+)
+CodeGenModel(
+  (wte): Embedding(51200, 1024)
+  (drop): Dropout(p=0.0, inplace=False)
+  (h): ModuleList(
+    (0-1): 2 x CodeGenBlock(
+      (ln_1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+      (attn): CodeGenAttention(
+        (attn_dropout): Dropout(p=0.0, inplace=False)
+        (resid_dropout): Dropout(p=0.0, inplace=False)
+        (qkv_proj): Linear(in_features=1024, out_features=3072, bias=False)
+        (out_proj): Linear(in_features=1024, out_features=1024, bias=False)
+      )
+      (mlp): CodeGenMLP(
+        (fc_in): Linear(in_features=1024, out_features=4096, bias=True)
+        (fc_out): Linear(in_features=4096, out_features=1024, bias=True)
+        (act): NewGELUActivation()
+        (dropout): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (ln_f): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+)
+  0%|          | 0/41541 [00:00<?, ?it/s]  3%|▎         | 1300/41541 [00:00<00:05, 7784.22it/s]  6%|▋         | 2600/41541 [00:00<00:04, 8002.06it/s]  9%|▉         | 3900/41541 [00:00<00:04, 8121.27it/s] 11%|█▏        | 4713/41541 [00:00<00:04, 7949.03it/s] 14%|█▍        | 5850/41541 [00:00<00:04, 7255.25it/s] 17%|█▋        | 7150/41541 [00:00<00:04, 7317.65it/s] 20%|██        | 8450/41541 [00:01<00:04, 7432.47it/s] 22%|██▏       | 9196/41541 [00:01<00:05, 6345.91it/s] 24%|██▎       | 9838/41541 [00:01<00:05, 5703.75it/s] 25%|██▌       | 10410/41541 [00:01<00:07, 4414.92it/s] 27%|██▋       | 11050/41541 [00:01<00:06, 4530.43it/s] 28%|██▊       | 11700/41541 [00:01<00:06, 4590.27it/s] 30%|██▉       | 12350/41541 [00:02<00:07, 4068.73it/s] 31%|███▏      | 13000/41541 [00:02<00:06, 4224.84it/s] 33%|███▎      | 13650/41541 [00:02<00:06, 4040.70it/s] 34%|███▍      | 14300/41541 [00:02<00:06, 4241.61it/s] 36%|███▌      | 14950/41541 [00:02<00:05, 4519.82it/s] 38%|███▊      | 15600/41541 [00:02<00:06, 4093.90it/s] 39%|███▉      | 16250/41541 [00:03<00:05, 4480.29it/s] 41%|████      | 16900/41541 [00:03<00:05, 4140.88it/s] 42%|████▏     | 17550/41541 [00:03<00:05, 4473.18it/s] 44%|████▍     | 18200/41541 [00:03<00:05, 4300.20it/s] 45%|████▌     | 18850/41541 [00:03<00:05, 4537.69it/s] 47%|████▋     | 19500/41541 [00:03<00:04, 4586.46it/s] 50%|█████     | 20800/41541 [00:04<00:04, 4807.97it/s] 52%|█████▏    | 21450/41541 [00:04<00:04, 4863.58it/s] 53%|█████▎    | 22100/41541 [00:04<00:04, 4159.19it/s] 55%|█████▍    | 22750/41541 [00:04<00:04, 4401.66it/s] 56%|█████▋    | 23400/41541 [00:04<00:04, 4523.14it/s] 58%|█████▊    | 24050/41541 [00:04<00:04, 4196.73it/s] 59%|█████▉    | 24700/41541 [00:04<00:03, 4321.04it/s] 61%|██████    | 25350/41541 [00:05<00:03, 4113.59it/s] 63%|██████▎   | 26000/41541 [00:05<00:03, 4258.35it/s] 64%|██████▍   | 26650/41541 [00:05<00:04, 3413.99it/s] 66%|██████▌   | 27300/41541 [00:05<00:03, 3621.96it/s] 67%|██████▋   | 27950/41541 [00:05<00:03, 3929.80it/s] 69%|██████▉   | 28600/41541 [00:06<00:03, 3330.08it/s] 70%|███████   | 29250/41541 [00:06<00:03, 3640.02it/s] 72%|███████▏  | 29900/41541 [00:06<00:03, 3494.01it/s] 74%|███████▎  | 30550/41541 [00:06<00:02, 3740.34it/s] 75%|███████▌  | 31200/41541 [00:06<00:02, 4005.25it/s] 77%|███████▋  | 31850/41541 [00:09<00:12, 804.84it/s]  78%|███████▊  | 32500/41541 [00:09<00:08, 1067.32it/s] 80%|███████▉  | 33150/41541 [00:09<00:06, 1307.84it/s] 81%|████████▏ | 33800/41541 [00:09<00:04, 1668.26it/s] 83%|████████▎ | 34450/41541 [00:09<00:03, 2115.53it/s] 84%|████████▍ | 35100/41541 [00:09<00:02, 2382.24it/s] 86%|████████▌ | 35750/41541 [00:09<00:02, 2823.81it/s] 88%|████████▊ | 36400/41541 [00:10<00:01, 3039.20it/s] 89%|████████▉ | 37050/41541 [00:10<00:01, 3413.33it/s] 91%|█████████ | 37700/41541 [00:10<00:01, 3291.46it/s] 92%|█████████▏| 38350/41541 [00:10<00:00, 3699.53it/s] 94%|█████████▍| 39000/41541 [00:10<00:00, 4008.24it/s] 95%|█████████▌| 39650/41541 [00:10<00:00, 3784.73it/s] 97%|█████████▋| 40300/41541 [00:11<00:00, 4063.16it/s] 99%|█████████▊| 40950/41541 [00:11<00:00, 3665.17it/s]100%|██████████| 41541/41541 [00:11<00:00, 3668.30it/s]
+04/25/2026 12:52:38 - INFO - __main__ -   ***** Running evaluation  *****
+04/25/2026 12:52:38 - INFO - __main__ -     Num examples = 41541
+04/25/2026 12:52:38 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/RQ2/CCD/SEP/codegpt-codegen/code/model.py:59: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)
+04/25/2026 12:56:13 - INFO - __main__ -   ***** Eval results  *****
+04/25/2026 12:56:13 - INFO - __main__ -     eval_f1 = 0.931
+04/25/2026 12:56:13 - INFO - __main__ -     eval_precision = 0.8949
+04/25/2026 12:56:13 - INFO - __main__ -     eval_recall = 0.9701
+04/25/2026 12:56:13 - INFO - __main__ -     eval_threshold = 0.94
+04/25/2026 12:56:16 - INFO - __main__ -   Creating features from index file at ../dataset/test.txt 
+  0%|          | 0/415416 [00:00<?, ?it/s]  2%|▏         | 6491/415416 [00:00<00:07, 56377.20it/s]  4%|▍         | 17513/415416 [00:00<00:04, 86185.16it/s]  6%|▋         | 26318/415416 [00:00<00:06, 60963.08it/s]  9%|▉         | 38946/415416 [00:00<00:06, 61697.13it/s] 13%|█▎        | 51928/415416 [00:00<00:05, 63538.31it/s] 14%|█▍        | 58542/415416 [00:00<00:05, 63092.69it/s] 16%|█▌        | 65003/415416 [00:01<00:05, 62552.97it/s] 19%|█▉        | 77892/415416 [00:01<00:05, 63085.88it/s] 22%|██▏       | 90874/415416 [00:01<00:04, 66044.65it/s] 25%|██▌       | 103856/415416 [00:01<00:04, 68308.67it/s] 27%|██▋       | 110682/415416 [00:10<01:21, 3747.51it/s]  28%|██▊       | 116838/415416 [00:11<01:13, 4039.82it/s] 30%|██▉       | 123329/415416 [00:12<01:08, 4280.13it/s] 31%|███▏      | 129820/415416 [00:13<01:01, 4641.61it/s] 33%|███▎      | 136311/415416 [00:16<01:21, 3428.27it/s] 34%|███▍      | 142802/415416 [00:17<01:09, 3915.79it/s] 36%|███▌      | 149293/415416 [00:18<01:00, 4398.87it/s] 38%|███▊      | 155784/415416 [00:19<00:53, 4869.23it/s] 39%|███▉      | 162275/415416 [00:20<00:47, 5320.49it/s] 41%|████      | 168766/415416 [00:21<00:44, 5604.05it/s] 42%|████▏     | 175257/415416 [00:26<01:20, 2981.52it/s] 44%|████▍     | 181748/415416 [00:27<01:05, 3585.97it/s] 45%|████▌     | 188239/415416 [00:28<00:54, 4162.66it/s] 47%|████▋     | 194730/415416 [00:29<00:47, 4641.58it/s] 48%|████▊     | 201221/415416 [00:30<00:42, 5038.16it/s] 50%|█████     | 207712/415416 [00:31<00:37, 5468.56it/s] 52%|█████▏    | 214203/415416 [00:32<00:34, 5776.23it/s] 53%|█████▎    | 220694/415416 [00:38<01:20, 2429.21it/s] 55%|█████▍    | 227185/415416 [00:39<01:02, 2988.35it/s] 56%|█████▋    | 233676/415416 [00:40<00:50, 3597.48it/s] 58%|█████▊    | 240167/415416 [00:41<00:42, 4159.29it/s] 59%|█████▉    | 246658/415416 [00:42<00:36, 4679.24it/s] 61%|██████    | 253149/415416 [00:43<00:31, 5177.26it/s] 63%|██████▎   | 259640/415416 [00:44<00:28, 5516.50it/s] 64%|██████▍   | 266131/415416 [00:45<00:25, 5776.23it/s] 66%|██████▌   | 272622/415416 [00:46<00:23, 5984.26it/s] 67%|██████▋   | 279113/415416 [00:55<01:13, 1849.79it/s] 69%|██████▉   | 285604/415416 [00:56<00:55, 2343.80it/s] 70%|███████   | 292095/415416 [00:57<00:42, 2903.02it/s] 72%|███████▏  | 298586/415416 [00:58<00:33, 3473.94it/s] 73%|███████▎  | 305077/415416 [00:59<00:27, 4028.34it/s] 75%|███████▌  | 311568/415416 [01:00<00:22, 4584.39it/s] 77%|███████▋  | 318059/415416 [01:01<00:19, 5039.96it/s] 78%|███████▊  | 324550/415416 [01:02<00:16, 5497.32it/s] 80%|███████▉  | 331041/415416 [01:03<00:14, 5747.26it/s] 81%|████████▏ | 337532/415416 [01:04<00:12, 6003.68it/s] 83%|████████▎ | 344023/415416 [01:17<00:52, 1347.23it/s] 84%|████████▍ | 350514/415416 [01:18<00:36, 1765.94it/s] 86%|████████▌ | 357005/415416 [01:19<00:25, 2267.30it/s] 88%|████████▊ | 363496/415416 [01:20<00:18, 2800.23it/s] 89%|████████▉ | 369987/415416 [01:21<00:13, 3402.10it/s] 91%|█████████ | 376478/415416 [01:22<00:09, 3956.31it/s] 92%|█████████▏| 382969/415416 [01:23<00:07, 4470.94it/s] 94%|█████████▍| 389460/415416 [01:24<00:05, 5035.36it/s] 95%|█████████▌| 395951/415416 [01:25<00:03, 5446.10it/s] 97%|█████████▋| 402442/415416 [01:26<00:02, 5852.05it/s] 98%|█████████▊| 408933/415416 [01:27<00:01, 6069.14it/s]100%|██████████| 415416/415416 [01:27<00:00, 4739.27it/s]
+04/25/2026 12:58:14 - INFO - __main__ -   ***** Running Test  *****
+04/25/2026 12:58:14 - INFO - __main__ -     Num examples = 415416
+04/25/2026 12:58:14 - INFO - __main__ -     Batch size = 32
+/mnt/cc6bfa99-761f-4d73-a77a-b5dc047a5d3a/zhaoyu/ICSE-2027/5-empirical/RQ2/CCD/SEP/codegpt-codegen/code/model.py:59: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  prob=F.softmax(logits)
