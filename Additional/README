@@ -1,12 +1,10 @@
-**Details of selected modules**
-BERT: lexical module of 1–2 layers, syntactic module of 11–12 layers, structural module of 7–8 layers. 
+Details of selected modules
 
-CodeBERT: lexical module of 5–6 layers, syntactic module of 1–2 layers, structural module of 3–4 layers. 
-
-StarEncoder: lexical module of 3–4 layers, syntactic module of 8–9 layers, structural module of 5–6 layers. 
-
-CodeGPT: lexical module of 8–9 layers, syntactic module of 1–2 layers, structural module of 4–5 layers. 
-
-PolyCoder: lexical module of 11–12 layers, syntactic module of 3–4 layers, structural module of 11–12 layers. 
-
-CodeGen: lexical module of 11–12 layers, syntactic module of 1–2 layers, structural module of 7–8 layers.
+| PTM         | lexical module | syntactic module | structural module |
+|-------------|----------------|------------------|-------------------|
+| BERT        | 1 - 2 layers   | 11–12 layers     | 7–8 layers        |
+| CodeBERT    | 5–6 layers     | 1–2 layers       | 3–4 layers        |
+| StarEncoder | 3–4 layers     | 8–9 layers       | 5–6 layers        |
+| CodeGPT     | 8–9 layers     | 1–2 layers       | 4–5 layers        |
+| PolyCoder   | 9–10 layers    | 3–4 layers       | 11–12 layers      |
+| CodeGen     | 11–12 layers   | 1–2 layers       | 7–8 layers        |
